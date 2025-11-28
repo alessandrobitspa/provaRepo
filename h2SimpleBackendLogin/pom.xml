@@ -58,6 +58,12 @@
                 <artifactId>h2</artifactId>
                 <scope>runtime</scope>
             </dependency>
+            <!-- Database mysql che sto provando a usare io -->
+            <dependency>
+                <groupId>mysql</groupId>
+             <artifactId>mysql-connector-j</artifactId>
+                <scope>runtime</scope>
+            </dependency>
 
             <!-- Starter per i test (JUnit, Spring Test, ecc.) -->
             <dependency>
