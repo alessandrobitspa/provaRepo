@@ -15,6 +15,9 @@ public class UserService {
     }
 
     public UserModel signup(String username, String password) {
+        if(userRepository.existsByUsername(username)){
+            throw new IllegalArgumentException("Username gia esistente");
+        }
         UserModel user = new UserModel();
         user.setUsername(username);
         user.setPassword(password); // ⚠️ In un'app reale andrebbe cifrata!

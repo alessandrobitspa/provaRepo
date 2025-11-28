@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:4230")
+@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
     private final UserService userService;
 
@@ -17,9 +17,14 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<UserModel> signup(@RequestParam String username, @RequestParam String password) {
-        UserModel user = userService.signup(username, password);
-        return ResponseEntity.status(HttpStatus.CREATED).body(user);
+    public ResponseEntity<?> signup(@RequestParam String username, @RequestParam String password) {// per fare controllo su username in registrazione ?
+        try {
+            UserModel user = userService.signup(username, password);
+            return ResponseEntity.status(HttpStatus.CREATED).body(user);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+
+        }
     }
 
     @PostMapping("/login")
